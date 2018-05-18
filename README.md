@@ -12,6 +12,8 @@ node v10.0.0 added support for a built-in `stream.pipeline`:
 This package provides the built-in `stream.pipeline` in node v10.0.0 and later,
 and a replacement in other environments.
 
+This module requires Node >= 5.
+
 This package implements the [es-shim API](https://github.com/es-shims/api)
 interface. It works in an ES5-supported environment and complies with the
 [spec](http://www.ecma-international.org/ecma-262/6.0/).
