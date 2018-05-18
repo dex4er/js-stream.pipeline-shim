@@ -1,7 +1,7 @@
 # stream.pipeline
 
 <!-- markdownlint-disable MD013 -->
-[![Build Status](https://secure.travis-ci.org/dex4er/js-stream.pipeline.svg)](http://travis-ci.org/dex4er/js-stream.pipeline) [![npm](https://img.shields.io/npm/v/stream.pipeline.svg)](https://www.npmjs.com/package/stream.pipeline)
+[![Build Status](https://secure.travis-ci.org/dex4er/js-stream.pipeline.svg)](http://travis-ci.org/dex4er/js-stream.pipeline) [![npm](https://img.shields.io/npm/v/stream.pipeline.svg)](https://www.npmjs.com/package/@dex4er/stream.pipeline)
 <!-- markdownlint-enable MD013 -->
 
 Polyfill for stream.pipeline in node versions &lt; v10
@@ -21,14 +21,14 @@ interface. It works in an ES5-supported environment and complies with the
 ### Direct
 
 ```js
-const pipeline = require('stream.pipeline');
+const pipeline = require('@dex4er/stream.pipeline');
 // Use `pipeline` just like the built-in method on `stream`
 ```
 
 ### Shim
 
 ```js
-require('stream.pipeline/shim')();
+require('@dex4er/stream.pipeline/shim')();
 // `stream.pipeline` is now defined
 const stream = require('stream');
 // Use `stream.pipeline`
@@ -37,8 +37,21 @@ const stream = require('stream');
 or:
 
 ```js
-require('stream.pipeline/auto');
+require('@dex4er/stream.pipeline/auto');
 // `stream.pipeline` is now defined
 const stream = require('stream');
 // Use `stream.pipeline`
 ```
+
+## Warning
+
+This package had to be named just `stream.pipeline`, but there is already some
+package with similar name and then I've got:
+
+<!-- markdownlint-disable MD013 -->
+
+```console
+npm ERR! Package name too similar to existing packages; try renaming your package to '@dex4er/stream.pipeline' and publishing with 'npm publish --access=public' instead : stream.pipeline
+```
+
+<!-- markdownlint-enable MD013 -->

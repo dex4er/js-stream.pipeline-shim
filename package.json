@@ -1,5 +1,5 @@
 {
-	"name": "stream.pipeline",
+	"name": "@dex4er/stream.pipeline",
 	"version": "1.0.0",
 	"description": "Polyfill/shim for stream.pipeline in node versions < v10",
 	"main": "index.js",
@@ -16,7 +16,7 @@
 	"author": "Piotr Roszatycki <piotr.roszatycki@gmail.com>",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/dex4er/js-stream.finishe/issues"
+		"url": "https://github.com/dex4er/js-stream.pipeline/issues"
 	},
 	"homepage": "http://github.com/dex4er/js-stream.pipeline",
 	"dependencies": {
