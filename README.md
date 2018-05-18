@@ -1,7 +1,7 @@
 # stream.pipeline
 
 <!-- markdownlint-disable MD013 -->
-[![Build Status](https://secure.travis-ci.org/dex4er/js-stream.pipeline.svg)](http://travis-ci.org/dex4er/js-stream.pipeline) [![npm](https://img.shields.io/npm/v/stream.pipeline.svg)](https://www.npmjs.com/package/@dex4er/stream.pipeline)
+[![Build Status](https://secure.travis-ci.org/dex4er/js-stream.pipeline.svg)](http://travis-ci.org/dex4er/js-stream.pipeline) [![npm](https://img.shields.io/npm/v/@dex4er/stream.pipeline.svg)](https://www.npmjs.com/package/@dex4er/stream.pipeline)
 <!-- markdownlint-enable MD013 -->
 
 Polyfill for stream.pipeline in node versions &lt; v10
