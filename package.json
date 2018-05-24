@@ -1,6 +1,6 @@
 {
 	"name": "stream.pipeline-shim",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Polyfill/shim for stream.pipeline in node versions < v10",
 	"main": "index.js",
 	"repository": {
@@ -11,7 +11,7 @@
 		"polyfill",
 		"shim",
 		"stream",
-		"stream.pipeline-shim"
+		"stream.pipeline"
 	],
 	"author": "Piotr Roszatycki <piotr.roszatycki@gmail.com>",
 	"license": "MIT",
