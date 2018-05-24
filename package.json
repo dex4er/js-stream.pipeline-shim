@@ -1,24 +1,24 @@
 {
-	"name": "@dex4er/stream.pipeline",
-	"version": "1.0.0",
+	"name": "stream.pipeline-shim",
+	"version": "1.0.1",
 	"description": "Polyfill/shim for stream.pipeline in node versions < v10",
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/dex4er/js-stream.pipeline"
+		"url": "https://github.com/dex4er/js-stream.pipeline-shim"
 	},
 	"keywords": [
 		"polyfill",
 		"shim",
 		"stream",
-		"stream.pipeline"
+		"stream.pipeline-shim"
 	],
 	"author": "Piotr Roszatycki <piotr.roszatycki@gmail.com>",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/dex4er/js-stream.pipeline/issues"
+		"url": "https://github.com/dex4er/js-stream.pipeline-shim/issues"
 	},
-	"homepage": "http://github.com/dex4er/js-stream.pipeline",
+	"homepage": "http://github.com/dex4er/js-stream.pipeline-shim",
 	"dependencies": {
 		"define-properties": "^1.1.2",
 		"function-bind": "^1.1.1",
