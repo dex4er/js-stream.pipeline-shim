@@ -1,6 +1,6 @@
 {
 	"name": "stream.pipeline-shim",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Polyfill/shim for stream.pipeline in node versions < v10",
 	"main": "index.js",
 	"repository": {

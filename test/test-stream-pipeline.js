@@ -392,10 +392,6 @@ common.crashOnUnhandledRejection();
 
   var write = new MyWritable();
 
-  read.on('close', common.mustCall());
-  transform.on('close', common.mustCall());
-  write.on('close', common.mustCall());
-
   process.on('uncaughtException', common.mustCall((err) => {
     assert.deepEqual(err, new Error('kaboom'));
   }));
