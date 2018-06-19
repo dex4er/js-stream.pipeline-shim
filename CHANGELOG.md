@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.3 2018-05-24
+
+* Compatible with Node v10.4.0.
+* Rethrow the error if it exists to avoid swallowing it.
+
 ## v1.0.2 2018-05-24
 
 * Tweak tags in `package.json`.

@@ -136,7 +136,7 @@ common.crashOnUnhandledRejection();
 
     var rs = new MyReadable();
 
-    pipeline(rs, res);
+    pipeline(rs, res, () => {});
   });
 
   server.listen(0, function () {
@@ -171,7 +171,7 @@ common.crashOnUnhandledRejection();
 
     var rs = new MyReadable();
 
-    pipeline(rs, res);
+    pipeline(rs, res, () => {});
   });
 
   server.listen(0, function () {
@@ -201,7 +201,7 @@ common.crashOnUnhandledRejection();
 
     var rs = new MyReadable();
 
-    pipeline(rs, res);
+    pipeline(rs, res, () => {});
   });
 
   var cnt = 10;
@@ -361,4 +361,48 @@ common.crashOnUnhandledRejection();
   }
 
   run();
+})();
+
+(function () {
+  function MyReadable () {
+    stream.Readable.call(this);
+  }
+  util.inherits(MyReadable, stream.Readable);
+  MyReadable.prototype._read = function () { };
+
+  var read = new MyReadable();
+
+  function MyTransform () {
+    stream.Transform.call(this);
+  }
+  MyTransform.prototype._transform = function (data, enc, cb) {
+    cb(new Error('kaboom'));
+  };
+  util.inherits(MyTransform, stream.Transform);
+
+  var transform = new MyTransform();
+
+  function MyWritable () {
+    stream.Writable.call(this);
+  }
+  MyWritable.prototype._write = function (data, enc, cb) {
+    cb();
+  };
+  util.inherits(MyWritable, stream.Writable);
+
+  var write = new MyWritable();
+
+  read.on('close', common.mustCall());
+  transform.on('close', common.mustCall());
+  write.on('close', common.mustCall());
+
+  process.on('uncaughtException', common.mustCall((err) => {
+    assert.deepEqual(err, new Error('kaboom'));
+  }));
+
+  const dst = pipeline(read, transform, write);
+
+  assert.equal(dst, write);
+
+  read.push('hello');
 })();
