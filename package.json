@@ -8,6 +8,7 @@
 		"url": "https://github.com/dex4er/js-stream.pipeline-shim"
 	},
 	"keywords": [
+		"pipeline",
 		"polyfill",
 		"shim",
 		"stream",
