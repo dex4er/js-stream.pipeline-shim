@@ -1,44 +1,48 @@
 {
-	"name": "stream.pipeline-shim",
-	"version": "1.0.4",
-	"description": "Polyfill/shim for stream.pipeline in node versions < v10",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/dex4er/js-stream.pipeline-shim"
-	},
-	"keywords": [
-		"pipeline",
-		"polyfill",
-		"shim",
-		"stream",
-		"stream.pipeline"
-	],
-	"author": "Piotr Roszatycki <piotr.roszatycki@gmail.com>",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/dex4er/js-stream.pipeline-shim/issues"
-	},
-	"homepage": "http://github.com/dex4er/js-stream.pipeline-shim",
-	"dependencies": {
-		"define-properties": "^1.1.3",
-		"function-bind": "^1.1.1",
-		"stream.finished": "^1.1.1"
-	},
-	"devDependencies": {
-		"@es-shims/api": "^2.1.2",
-		"eslint": "^5.16.0",
-		"eslint-config-semistandard": "^13.0.0",
-		"eslint-config-standard": "^12.0.0",
-		"eslint-plugin-import": "^2.17.2",
-		"eslint-plugin-node": "^9.0.1",
-		"eslint-plugin-standard": "^4.0.0",
-		"markdownlint-cli": "^0.15.0",
-		"semistandard": "^13.0.1"
-	},
-	"scripts": {
-		"pretest": "eslint . && markdownlint *.md && es-shim-api --bound",
-		"test": "npm run test:api",
-		"test:api": "node test"
-	}
+  "name": "stream.pipeline-shim",
+  "version": "1.1.0",
+  "description": "Polyfill/shim for stream.pipeline in node versions < v10",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dex4er/js-stream.pipeline-shim"
+  },
+  "keywords": [
+    "pipeline",
+    "polyfill",
+    "shim",
+    "stream",
+    "stream.pipeline"
+  ],
+  "author": "Piotr Roszatycki <piotr.roszatycki@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dex4er/js-stream.pipeline-shim/issues"
+  },
+  "homepage": "http://github.com/dex4er/js-stream.pipeline-shim",
+  "dependencies": {
+    "define-properties": "^1.1.3",
+    "function-bind": "^1.1.1",
+    "stream.finished": "^1.1.1"
+  },
+  "devDependencies": {
+    "@es-shims/api": "^2.1.2",
+    "@types/node": "^12.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^9.0.1",
+    "markdownlint-cli": "^0.15.0",
+    "prettier": "^1.17.0",
+    "tslint": "^5.16.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.5",
+    "util.promisify": "^1.0.0"
+  },
+  "scripts": {
+    "postpublish": "git tag v$npm_package_version -a -m \"Release v$npm_package_version\" && git push --tags",
+    "pretest": "eslint . && tsc --pretty -p . && tslint *.d.ts && npx prettier --ignore-path .gitignore --list-different '**/*.ts' '**/*.js' '**/*.json' '**/*.yml' && markdownlint *.md && es-shim-api --bound",
+    "test": "npm run test:api",
+    "test:api": "node test"
+  }
 }

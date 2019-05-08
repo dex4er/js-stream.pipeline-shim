@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.0 2019-05-08
+
+* Typings for Typescript.
+
 ## v1.0.3 2018-05-24
 
 * Compatible with Node v10.4.0.

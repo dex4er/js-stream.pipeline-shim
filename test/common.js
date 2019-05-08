@@ -2,23 +2,26 @@
 
 // taken from https://github.com/nodejs/node/blob/master/test/common/index.js
 
-exports.crashOnUnhandledRejection = function () {
-  process.on('unhandledRejection',
-    function (err) { process.nextTick(function () { throw err; }); });
+exports.crashOnUnhandledRejection = function() {
+  process.on('unhandledRejection', function(err) {
+    process.nextTick(function() {
+      throw err;
+    });
+  });
 };
 
-exports.mustCall = function (fn, exact) {
+exports.mustCall = function(fn, exact) {
   return _mustCallInner(fn, exact, 'exact');
 };
 
-function noop () { }
+function noop() {}
 
 var mustCallChecks = [];
 
-function runCallChecks (exitCode) {
+function runCallChecks(exitCode) {
   if (exitCode !== 0) return;
 
-  var failed = mustCallChecks.filter(function (context) {
+  var failed = mustCallChecks.filter(function(context) {
     if ('minimum' in context) {
       context.messageSegment = 'at least ' + context.minimum;
       return context.actual < context.minimum;
@@ -28,18 +31,25 @@ function runCallChecks (exitCode) {
     }
   });
 
-  failed.forEach(function (context) {
-    console.log('Mismatched %s function calls. Expected %s, actual %d.',
+  failed.forEach(function(context) {
+    console.log(
+      'Mismatched %s function calls. Expected %s, actual %d.',
       context.name,
       context.messageSegment,
-      context.actual);
-    console.log(context.stack.split('\n').slice(2).join('\n'));
+      context.actual
+    );
+    console.log(
+      context.stack
+        .split('\n')
+        .slice(2)
+        .join('\n')
+    );
   });
 
   if (failed.length) process.exit(1);
 }
 
-function _mustCallInner (fn, criteria, field) {
+function _mustCallInner(fn, criteria, field) {
   criteria = criteria !== undefined ? criteria : 1;
   if (process._exiting) {
     throw new Error('Cannot use common.mustCall*() in process exit handler');
@@ -57,7 +67,7 @@ function _mustCallInner (fn, criteria, field) {
 
   var context = {
     actual: 0,
-    stack: (new Error()).stack,
+    stack: new Error().stack,
     name: fn.name || '<anonymous>'
   };
   context[field] = criteria;
@@ -67,23 +77,23 @@ function _mustCallInner (fn, criteria, field) {
 
   mustCallChecks.push(context);
 
-  return function () {
+  return function() {
     context.actual++;
     return fn.apply(this, arguments);
   };
 }
 
 Object.defineProperty(exports, 'hasCrypto', {
-  get: function () {
+  get: function() {
     return Boolean(process.versions.openssl);
   }
 });
 
-exports.printSkipMessage = function (msg) {
+exports.printSkipMessage = function(msg) {
   console.log('1..0 # Skipped: ' + msg);
 };
 
-exports.skip = function (msg) {
+exports.skip = function(msg) {
   exports.printSkipMessage(msg);
   process.exit(0);
 };

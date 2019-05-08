@@ -6,40 +6,40 @@
 
 var eos = require('stream.finished');
 
-function once (callback) {
+function once(callback) {
   var called = false;
-  return function (err) {
+  return function(err) {
     if (called) return;
     called = true;
     callback(err);
   };
 }
 
-function noop (err) {
+function noop(err) {
   // Rethrow the error if it exists to avoid swallowing it
   if (err) throw err;
 }
 
-function isRequest (stream) {
+function isRequest(stream) {
   return stream.setHeader && typeof stream.abort === 'function';
 }
 
-function destroyer (stream, reading, writing, callback) {
+function destroyer(stream, reading, writing, callback) {
   callback = once(callback);
 
   var closed = false;
-  stream.on('close', function () {
+  stream.on('close', function() {
     closed = true;
   });
 
-  eos(stream, { readable: reading, writable: writing }, function (err) {
+  eos(stream, {readable: reading, writable: writing}, function(err) {
     if (err) return callback(err);
     closed = true;
     callback();
   });
 
   var destroyed = false;
-  return function (err) {
+  return function(err) {
     if (closed) return;
     if (destroyed) return;
     destroyed = true;
@@ -57,21 +57,21 @@ function destroyer (stream, reading, writing, callback) {
   };
 }
 
-function call (fn) {
+function call(fn) {
   fn();
 }
 
-function pipe (from, to) {
+function pipe(from, to) {
   return from.pipe(to);
 }
 
-function popCallback (streams) {
+function popCallback(streams) {
   if (!streams.length) return noop;
   if (typeof streams[streams.length - 1] !== 'function') return noop;
   return streams.pop();
 }
 
-function pipeline () {
+function pipeline() {
   for (var len = arguments.length, streams = Array(len), key = 0; key < len; key++) {
     streams[key] = arguments[key];
   }
@@ -88,10 +88,10 @@ function pipeline () {
   }
 
   var error;
-  var destroys = streams.map(function (stream, i) {
+  var destroys = streams.map(function(stream, i) {
     var reading = i < streams.length - 1;
     var writing = i > 0;
-    return destroyer(stream, reading, writing, function (err) {
+    return destroyer(stream, reading, writing, function(err) {
       if (!error) error = err;
       if (err) destroys.forEach(call);
       if (reading) return;

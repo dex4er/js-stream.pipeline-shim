@@ -8,7 +8,7 @@ var shim = require('./shim');
 var define = require('define-properties');
 var streamModule = require('stream');
 
-var boundPipeline = function pipeline () {
+var boundPipeline = function pipeline() {
   return polyfill.apply(streamModule, arguments);
 };
 define(boundPipeline, {

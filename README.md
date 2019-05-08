@@ -18,12 +18,31 @@ This package implements the [es-shim API](https://github.com/es-shims/api)
 interface. It works in an ES5-supported environment and complies with the
 [spec](http://www.ecma-international.org/ecma-262/6.0/).
 
+## Installation
+
+```shell
+npm install stream.pipeline-shim
+```
+
+_Additionally for Typescript:_
+
+```shell
+npm install -D @types/node
+```
+
 ## Usage
 
 ### Direct
 
 ```js
 const pipeline = require('stream.pipeline-shim');
+// Use `pipeline` just like the built-in method on `stream`
+```
+
+_Typescript:_
+
+```ts
+import pipeline from 'stream.pipeline-shim';
 // Use `pipeline` just like the built-in method on `stream`
 ```
 
@@ -45,15 +64,31 @@ const stream = require('stream');
 // Use `stream.pipeline`
 ```
 
-## Warning
+_Typescript:_
 
-This package had to be named just `stream.pipeline`, but there is already some
-package with similar name and then I've got:
-
-<!-- markdownlint-disable MD013 -->
-
-```console
-npm ERR! Package name too similar to existing packages; try renaming your package to 'stream.pipeline-shim' and publishing with 'npm publish --access=public' instead : stream.pipeline
+```js
+import finishedShim from 'stream.pipeline-shim/shim';
+finishedShim();
+// `stream.pipeline` is now defined
+import stream from 'stream';
+// Use `stream.pipeline`
 ```
 
-<!-- markdownlint-enable MD013 -->
+or:
+
+```js
+import 'stream.pipeline-shim/auto';
+// `stream.pipeline` is now defined
+import stream from 'stream';
+// Use `stream.pipeline`
+```
+
+## License
+
+Copyright (c) 2018-2019 Piotr Roszatycki <piotr.roszatycki@gmail.com>
+
+Copyright Node.js contributors. All rights reserved.
+
+Copyright (c) 2014 Mathias Buus
+
+[MIT](https://opensource.org/licenses/MIT)
