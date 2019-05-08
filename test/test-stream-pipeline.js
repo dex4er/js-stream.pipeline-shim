@@ -86,7 +86,7 @@ common.crashOnUnhandledRejection();
   }, /ERR_MISSING_ARGS/);
   assert.throws(function() {
     pipeline();
-  }, /ERR_INVALID_CALLBACK/);
+  }, /(ERR_MISSING_ARGS|ERR_INVALID_CALLBACK)/);
 })();
 
 (function() {
